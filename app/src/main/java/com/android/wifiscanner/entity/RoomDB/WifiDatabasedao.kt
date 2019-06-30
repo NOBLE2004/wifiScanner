@@ -1,4 +1,4 @@
-package com.android.wifiscanner.model.database
+package com.android.wifiscanner.entity.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -10,13 +10,13 @@ import androidx.room.Query
 interface WifiDatabasedao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(listData: ListData)
+    fun insert(listData: WifiData)
 
-    @Query("DELETE FROM wifi_log_table WHERE wifiname = :ssid ")
+    @Query("DELETE FROM wifi_table WHERE wifiname = :ssid ")
     fun delete(ssid: String)
 
-    @Query("SELECT * FROM wifi_log_table ORDER BY wifiStrength DESC")
-    fun getAllScanData(): LiveData<List<ListData>>
+    @Query("SELECT * FROM wifi_table ORDER BY wifiStrength DESC")
+    fun getAllScanData(): LiveData<List<WifiData>>
 
 
 }

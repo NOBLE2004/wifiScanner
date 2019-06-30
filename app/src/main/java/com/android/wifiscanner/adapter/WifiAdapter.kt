@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.wifiscanner.databinding.RowItemBinding
 
-import com.android.wifiscanner.model.database.ListData
+import com.android.wifiscanner.entity.database.WifiData
 
-class WifiListAdapter : ListAdapter<ListData, WifiListAdapter.MyViewHolder>(WifiscanCallbacks()) {
+class WifiAdapter : ListAdapter<WifiData, WifiAdapter.MyViewHolder>(WifiscanCallbacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder.from(parent)
@@ -23,7 +23,7 @@ class WifiListAdapter : ListAdapter<ListData, WifiListAdapter.MyViewHolder>(Wifi
 
     class MyViewHolder private constructor(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ListData) {
+        fun bind(item: WifiData) {
             binding.recylerListdata = item
             binding.executePendingBindings()
         }
@@ -39,12 +39,12 @@ class WifiListAdapter : ListAdapter<ListData, WifiListAdapter.MyViewHolder>(Wifi
     }
 
 
-    class WifiscanCallbacks : DiffUtil.ItemCallback<ListData>() {
-        override fun areItemsTheSame(oldItem: ListData, newItem: ListData): Boolean {
+    class WifiscanCallbacks : DiffUtil.ItemCallback<WifiData>() {
+        override fun areItemsTheSame(oldItem: WifiData, newItem: WifiData): Boolean {
             return oldItem.wifiname == newItem.wifiname
         }
 
-        override fun areContentsTheSame(oldItem: ListData, newItem: ListData): Boolean {
+        override fun areContentsTheSame(oldItem: WifiData, newItem: WifiData): Boolean {
             return oldItem.wifiStrength == newItem.wifiStrength
         }
 

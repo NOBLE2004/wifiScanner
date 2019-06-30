@@ -1,9 +1,7 @@
 package com.android.wifiscanner.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.wifiscanner.model.database.WifiDatabasedao
 import com.android.wifiscanner.repository.WifiScanRepository
 
 
@@ -16,7 +14,7 @@ class ViewModelFactory(
             return MainActivityViewModel(repository) as T
         }
 
-        throw IllegalArgumentException("Unknown Viewmodel class")
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
 }

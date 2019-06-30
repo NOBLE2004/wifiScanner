@@ -3,7 +3,7 @@ package com.android.wifiscanner.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.android.wifiscanner.model.database.WifiDatabase
+import com.android.wifiscanner.entity.database.WifiDatabase
 
 import dagger.Module
 import dagger.Provides

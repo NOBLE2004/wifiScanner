@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="recylerListdata"
-                type="com.android.wifiscanner.model.database.ListData"/>
+                type="com.android.wifiscanner.entity.database.WifiData"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,19 +25,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="@dimen/margin_small"
                 android:fontFamily="@font/roboto" android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/strength_indicator"/>
+        />
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@drawable/ic_signal_wifi_0_bar_black_24dp"
-                app:setStrengthIndicator="@{recylerListdata}"
-                android:id="@+id/strength_indicator"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/margin_small"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="@dimen/margin_big"
-                android:contentDescription="@string/wifi_img_description"/>
 
         <TextView
                 android:layout_width="0dp"
@@ -48,7 +37,7 @@
                 tools:text="@string/tools_text_strength"
                 app:layout_constraintTop_toBottomOf="@+id/wifi_name_textView"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textStyle="italic" android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/strength_indicator"/>
+                android:layout_marginEnd="8dp"
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

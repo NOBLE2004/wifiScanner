@@ -14,10 +14,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
-import com.android.wifiscanner.adapter.WifiListAdapter
+import com.android.wifiscanner.adapter.WifiAdapter
 import com.android.wifiscanner.databinding.ActivityMainBinding
-import com.android.wifiscanner.model.database.ListData
-import com.android.wifiscanner.model.database.WifiDatabase
+import com.android.wifiscanner.entity.database.WifiData
+import com.android.wifiscanner.entity.database.WifiDatabase
 import com.android.wifiscanner.repository.WifiScanRepository
 import com.android.wifiscanner.utils.*
 import com.android.wifiscanner.viewmodel.MainActivityViewModel
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                     for (item in wifiManager.scanResults) {
                         Log.e("WifiScanRepository", "${item.SSID} ${item.level}")
                         if (item.SSID.isNotEmpty()) {
-                            val data = ListData(item.SSID, item.level)
+                            val data = WifiData(item.SSID, item.level)
                             viewModel.startMonitoring(data)
                         }
                     }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
         binding.viewmodel = viewModel
 
-        val adapter = WifiListAdapter()
+        val adapter = WifiAdapter()
         binding.wifiRecylerview.adapter = adapter
 
         viewModel.getScanResult.observe(this, Observer { list ->
@@ -78,22 +78,22 @@ class MainActivity : AppCompatActivity() {
 
         binding.lifecycleOwner=this
 
-        if (versionAndroidPieandAbove()) locationpermission()
-        storagepermission()
+        if (versionAndroidPieandAbove()) locationPermission()
+        storagePermission()
 
     }
 
-    private fun locationpermission() {
+    private fun locationPermission() {
         if (!isPermissionGranted(Manifest.permission.ACCESS_COARSE_LOCATION) &&
             !isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)
         ) {
-            requestlocationpermission()
+            requestLocationPermission()
         } else {
             createLocationRequest()
         }
     }
 
-    private fun requestlocationpermission() {
+    private fun requestLocationPermission() {
         if (shouldShowPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) &&
             shouldShowPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
         ) {
@@ -103,17 +103,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun storagepermission() {
+    private fun storagePermission() {
         if (!isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ) {
             viewModel.isGranted(false)
-            requestStoragepermission()
+            requestStoragePermission()
         } else {
             viewModel.isGranted(true)
         }
     }
 
-    private fun requestStoragepermission() {
+    private fun requestStoragePermission() {
         if (shouldShowPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ) {
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_PERMISSIONS_STORAGE)
@@ -179,8 +179,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (versionAndroidPieandAbove()) locationpermission()
-        storagepermission()
+        if (versionAndroidPieandAbove()) locationPermission()
+        storagePermission()
     }
 
     override fun onDestroy() {

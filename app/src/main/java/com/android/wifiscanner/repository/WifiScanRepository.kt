@@ -3,19 +3,18 @@ package com.android.wifiscanner.repository
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.android.wifiscanner.R
-import com.android.wifiscanner.model.database.ListData
-import com.android.wifiscanner.model.database.WifiDatabase
-import com.android.wifiscanner.model.database.WifiDatabasedao
+import com.android.wifiscanner.entity.database.WifiData
+import com.android.wifiscanner.entity.database.WifiDatabase
+import com.android.wifiscanner.entity.database.WifiDatabasedao
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
-import javax.inject.Inject
 
 class WifiScanRepository(application: Application,database: WifiDatabase) {
 
     private var dao: WifiDatabasedao
-    lateinit var getAllScanResults: LiveData<List<ListData>>
+    lateinit var getAllScanResults: LiveData<List<WifiData>>
     var storage_permission: Boolean = false
     val filePath: String
 
@@ -25,12 +24,12 @@ class WifiScanRepository(application: Application,database: WifiDatabase) {
         filePath = application.resources.getString(R.string.filepath)
     }
 
-    fun getAllResults(): LiveData<List<ListData>> {
+    fun getAllResults(): LiveData<List<WifiData>> {
         getAllScanResults = dao.getAllScanData()
         return getAllScanResults
     }
 
-    fun insert(listData: ListData) {
+    fun insert(listData: WifiData) {
         dao.insert(listData)
         if (storage_permission)
             appendLog("Wifi Name:${listData.wifiname} Strength in db : ${listData.wifiStrength}")

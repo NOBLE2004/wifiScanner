@@ -1,7 +1,7 @@
 package com.android.wifiscanner.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.android.wifiscanner.model.database.ListData
+import com.android.wifiscanner.entity.database.WifiData
 import com.android.wifiscanner.repository.WifiScanRepository
 import kotlinx.coroutines.*
 
@@ -12,13 +12,13 @@ class MainActivityViewModel(val wifiScanRepository: WifiScanRepository) : ViewMo
     val getScanResult = wifiScanRepository.getAllResults()
 
 
-    fun startMonitoring(listData: ListData) {
+    fun startMonitoring(listData: WifiData) {
         uiScope.launch {
             insertData(listData)
         }
     }
 
-    suspend fun insertData(listData: ListData) {
+    suspend fun insertData(listData: WifiData) {
         withContext(Dispatchers.IO) {
             wifiScanRepository.insert(listData)
         }

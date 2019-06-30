@@ -6,39 +6,25 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
 import com.android.wifiscanner.R
-import com.android.wifiscanner.model.database.ListData
+import com.android.wifiscanner.entity.database.WifiData
 
 @BindingAdapter("setWifiName")
-fun TextView.setWifiname(item: ListData?) {
+fun TextView.setWifiname(item: WifiData?) {
     item?.let {
         text = item.wifiname
     }
 }
 
-@BindingAdapter("setStrengthIndicator")
-fun ImageView.setStrengthIndicator(item: ListData?) {
-    item?.let {
-        setImageResource(
-            when (item.wifiStrength) {
-                in 0 downTo -55 -> R.drawable.ic_signal_wifi_4_bar_black_24dp
-                in -55 downTo -75 -> R.drawable.ic_signal_wifi_3_bar_black_24dp
-                in -75 downTo -85 -> R.drawable.ic_signal_wifi_2_bar_black_24dp
-                in -85 downTo -100 -> R.drawable.ic_signal_wifi_1_bar_black_24dp
-                else -> R.drawable.ic_signal_wifi_0_bar_black_24dp
-            }
-        )
-    }
-}
 
 @BindingAdapter("setStrengthValue")
-fun TextView.setStrengthValue(item: ListData?){
+fun TextView.setStrengthValue(item: WifiData?){
     item?.let {
         text = item.wifiStrength.toString()
     }
 }
 
 @BindingAdapter("setStrengthStatus")
-fun TextView.setStrengthStatus(item: ListData?) {
+fun TextView.setStrengthStatus(item: WifiData?) {
     item?.let {
         when (item.wifiStrength) {
             in 0 downTo -55 -> text = context.getString(R.string.excellent)
