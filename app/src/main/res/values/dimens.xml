@@ -4,4 +4,8 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_wifi_img">32dp</dimen>
     <dimen name="padding_big">16dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_radius">5dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+
 </resources>

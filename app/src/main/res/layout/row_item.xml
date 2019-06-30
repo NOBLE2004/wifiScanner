@@ -6,38 +6,48 @@
                 name="recylerListdata"
                 type="com.android.wifiscanner.entity.database.WifiData"/>
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:padding="@dimen/margin_small"
-            android:background="@android:color/white">
+            android:elevation="@dimen/card_elevation"
+            android:layout_marginTop="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            app:cardCornerRadius="@dimen/card_radius">
 
-        <TextView
-                tools:text="@string/wifi_name"
-                android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/wifi_name_textView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:setWifiName="@{recylerListdata}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="@dimen/margin_small"
-                android:fontFamily="@font/roboto" android:layout_marginEnd="8dp"
-        />
+                android:layout_marginBottom="1dp"
+                android:padding="@dimen/margin_small"
+                android:background="@android:color/white">
 
 
-        <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/strength_text"
-                app:setStrengthStatus="@{recylerListdata}"
-                android:fontFamily="@font/roboto"
-                tools:text="@string/tools_text_strength"
-                app:layout_constraintTop_toBottomOf="@+id/wifi_name_textView"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginEnd="8dp"
-        />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    tools:text="@string/wifi_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wifi_name_textView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:setWifiName="@{recylerListdata}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/roboto" android:layout_marginEnd="8dp"
+            />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/strength_text"
+                    app:setStrengthStatus="@{recylerListdata}"
+                    android:fontFamily="@font/roboto"
+                    tools:text="@string/tools_text_strength"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/wifi_name_textView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="8dp"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
